@@ -1,17 +1,33 @@
 {
-  "name"        : "nostr-socket",
-  "author"      : "Christopher Scott",
-  "license"     : "MIT",
-  "version"     : "0.0.0",
-  "description" : "Example project for the Nostr Devs machine-to-machine course.",
-  "type"        : "module",
-  "dependencies": {},
+  "name": "nostr-socket",
+  "author": "Christopher Scott",
+  "license": "MIT",
+  "version": "0.0.0",
+  "description": "Example project for the Nostr Devs machine-to-machine course.",
+  "type": "module",
+  "dependencies": {
+    "nostr-tools": "1.12.1",
+    "websocket-polyfill": "^0.0.3"
+  },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.2",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-terser": "^0.4.3",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@cmdcode/buff-utils": "^1.9.11",
+    "@cmdcode/crypto-utils": "^2.1.10",
     "@types/node": "^20.3.3",
+    "rollup": "^3.26.2",
     "ts-node": "^10.9.1",
+    "tslib": "^2.6.0",
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "scratch": "node --loader ts-node/esm --no-warnings test/scratch.ts"
+    "start": "yarn start",
+    "build": "rollup -c rollup.config.ts --configPlugin typescript",
+    "clean": "rm -rf dist/*",
+    "scratch": "node --loader ts-node/esm --no-warnings test/scratch.ts",
+    "types": "tsc",
+    "release": "yarn clean && yarn types && yarn build"
   }
 }
